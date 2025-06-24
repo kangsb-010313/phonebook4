@@ -66,7 +66,7 @@ public class PhonebookController {
 		System.out.println("/phonebook4/delte");
 		
 		PhonebookDAO phonebookDAO = new PhonebookDAO();
-		int personVO = phonebookDAO.personDelete(no);
+		phonebookDAO.personDelete(no);
 		
 		return "redirect:/list";
 	}
