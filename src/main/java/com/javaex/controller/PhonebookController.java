@@ -1,8 +1,16 @@
 package com.javaex.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.javaex.dao.PhonebookDAO;
+import com.javaex.vo.PersonVO;
 
 @Controller
 public class PhonebookController {
@@ -16,54 +24,75 @@ public class PhonebookController {
 	//메소드 gs
 	
 	
-	//메소드 일반
-	@RequestMapping(value="/test", method= {RequestMethod.GET, RequestMethod.POST})
-	public String test() {
-		System.out.println("aaa");
-		
-		return "";
-	}
-	
+	//메소드 일반	
+	//리스트 가져오기
 	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
-	public String list() {
+	public String list(Model model) {
 		System.out.println("/phonebook4/list");
 		
-		return "";
+		PhonebookDAO phonebookDAO = new PhonebookDAO();
+		List<PersonVO> phonebookList = phonebookDAO.personSelect();
+		System.out.println(phonebookList);
+		
+		model.addAttribute("pList", phonebookList);
+		
+		return "list";
 	}
 	
+	//등록폼
 	@RequestMapping(value="/wform", method= {RequestMethod.GET, RequestMethod.POST})
 	public String wform() {
 		System.out.println("/phonebook4/wform");
 		
-		return "";
+		return "writeform";
 	}
 	
+	//등록
 	@RequestMapping(value="/write", method= {RequestMethod.GET, RequestMethod.POST})
-	public String write() {
+	public String write(@ModelAttribute PersonVO personVO) {
 		System.out.println("/phonebook4/write");
 		
-		return "";
+		System.out.println(personVO);
+		
+		PhonebookDAO phonebookDAO = new PhonebookDAO();
+		phonebookDAO.personInsert(personVO);
+		
+		return "redirect:/list";
 	}
 	
+	//삭제
 	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})
-	public String delete() {
+	public String delete(@RequestParam("no") int no) {
 		System.out.println("/phonebook4/delte");
 		
-		return "";
+		PhonebookDAO phonebookDAO = new PhonebookDAO();
+		int personVO = phonebookDAO.personDelete(no);
+		
+		return "redirect:/list";
 	}
 
+	//수정폼
 	@RequestMapping(value="/mform", method= {RequestMethod.GET, RequestMethod.POST})
-	public String mform() {
+	public String mform(@RequestParam("no") int no, Model model) {
 		System.out.println("/phonebook4/mform");
 		
-		return "";
+		PhonebookDAO phonebookDAO = new PhonebookDAO();
+	    PersonVO personVO = phonebookDAO.personSelectOne(no);
+	    
+	    model.addAttribute("personVO", personVO);
+		
+		return "modifyform";
 	}
 	
+	//수정
 	@RequestMapping(value="/modify", method= {RequestMethod.GET, RequestMethod.POST})
-	public String modify() {
+	public String modify(@ModelAttribute PersonVO personVO) {
 		System.out.println("/phonebook4/modify");
 		
-		return "";
+		PhonebookDAO phonebookDAO = new PhonebookDAO();
+		phonebookDAO.personUpdate(personVO);
+		
+		return "redirect:/list";
 	}
 	
 }
