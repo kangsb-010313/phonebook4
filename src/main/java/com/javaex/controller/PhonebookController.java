@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,14 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.javaex.dao.PhonebookDAO;
+import com.javaex.service.PhonebookService;
 import com.javaex.vo.PersonVO;
 
 @Controller
 public class PhonebookController {
 	
 	//필드
-	
+	@Autowired
+	private PhonebookService phonebookService;
 	
 	//생성자
 	
@@ -30,10 +32,8 @@ public class PhonebookController {
 	public String list(Model model) {
 		System.out.println("/phonebook4/list");
 		
-		PhonebookDAO phonebookDAO = new PhonebookDAO();
-		List<PersonVO> phonebookList = phonebookDAO.personSelect();
-		System.out.println(phonebookList);
-		
+		List<PersonVO> phonebookList = phonebookService.exeGetPhonebookList();
+
 		model.addAttribute("pList", phonebookList);
 		
 		return "list";
@@ -54,8 +54,7 @@ public class PhonebookController {
 		
 		System.out.println(personVO);
 		
-		PhonebookDAO phonebookDAO = new PhonebookDAO();
-		phonebookDAO.personInsert(personVO);
+		phonebookService.exeGetPhonebookAdd(personVO);
 		
 		return "redirect:/list";
 	}
@@ -65,8 +64,7 @@ public class PhonebookController {
 	public String delete(@RequestParam("no") int no) {
 		System.out.println("/phonebook4/delte");
 		
-		PhonebookDAO phonebookDAO = new PhonebookDAO();
-		phonebookDAO.personDelete(no);
+		phonebookService.exeGetPhonebookDelete(no);
 		
 		return "redirect:/list";
 	}
@@ -75,9 +73,8 @@ public class PhonebookController {
 	@RequestMapping(value="/mform", method= {RequestMethod.GET, RequestMethod.POST})
 	public String mform(@RequestParam("no") int no, Model model) {
 		System.out.println("/phonebook4/mform");
-		
-		PhonebookDAO phonebookDAO = new PhonebookDAO();
-	    PersonVO personVO = phonebookDAO.personSelectOne(no);
+	    
+	    PersonVO personVO = phonebookService.exeGetPhonebookMform(no);
 	    
 	    model.addAttribute("personVO", personVO);
 		
@@ -89,8 +86,7 @@ public class PhonebookController {
 	public String modify(@ModelAttribute PersonVO personVO) {
 		System.out.println("/phonebook4/modify");
 		
-		PhonebookDAO phonebookDAO = new PhonebookDAO();
-		phonebookDAO.personUpdate(personVO);
+		phonebookService.exeGetPhonebookUpdate(personVO);
 		
 		return "redirect:/list";
 	}
