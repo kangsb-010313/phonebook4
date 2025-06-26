@@ -45,7 +45,6 @@ public class PhonebookDAO {
 	}
 	
 	
-	
 	//사람(주소) 등록
 	public int personInsert(PersonVO personVO) {
 		System.out.println("PhonebookDAO.personInsert()");
@@ -54,6 +53,7 @@ public class PhonebookDAO {
 		
 		return count;
 	}
+	
 	
 	//사람(주소) 삭제
 	public int personDelete(int no) {
