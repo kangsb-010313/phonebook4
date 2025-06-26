@@ -19,7 +19,7 @@
 		<p>전화번호를 등록하는 폼입니다.</p>
 		
 <!-- 	<form action="/phonebook3/pbc" method="get"> -->
-		<form action="${pageContext.request.contextPath}/write" method="get">
+		<form action="${pageContext.request.contextPath}/add" method="get">
 			<label>이름(name): </label>
 			<input type= "text" name="name" value="">
 			<br>

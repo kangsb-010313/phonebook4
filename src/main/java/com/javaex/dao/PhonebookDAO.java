@@ -23,7 +23,7 @@ public class PhonebookDAO {
 		System.out.println("PhonebookDAO.personSelect()");
 		
 		//리스트준비
-		List<PersonVO> personList = sqlSession.selectList("phonebook.selectList");
+		List<PersonVO> personList = sqlSession.selectList("phonebook.selectList2");
 		
 		return personList;
 		

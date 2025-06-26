@@ -48,9 +48,9 @@ public class PhonebookController {
 	}
 	
 	//등록
-	@RequestMapping(value="/write", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute PersonVO personVO) {
-		System.out.println("PhonebookController.write");
+		System.out.println("PhonebookController.add");
 		
 		System.out.println(personVO);
 		

@@ -3,6 +3,25 @@
 
 <mapper namespace="phonebook">
 
+	<resultMap id="resultPersonVO" type="com.javaex.vo.PersonVO">
+		<result column="person_id" property="personId" />
+		<result column="name" property="name" />
+		<result column="hp" property="hp" />
+		<result column="company" property="company" />
+	</resultMap>
+	
+	<!-- 방명록 전체 가져오기2 -->
+	<select id="selectList2" resultMap="resultPersonVO">
+		<![CDATA[
+			select  person_id
+					,name
+			        ,hp
+			        ,company
+			from person
+			order by person_id desc
+		]]>
+	</select>
+
 	<!-- 방명록 전체 가져오기 -->
 	<select id="selectList" resultType="com.javaex.vo.PersonVO">
 		<![CDATA[
@@ -13,8 +32,8 @@
 			from person
 			order by person_id desc
 		]]>
-	
 	</select>
+	
 	
 	<!-- 방명록 1명 정보 가져오기 -->
 	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.PersonVO">
@@ -28,6 +47,7 @@
 		]]>
 	</select>
 	
+	
 	<!-- 방명록 저장  -->
 	<insert id="insert" parameterType="com.javaex.vo.PersonVO">
 		<![CDATA[
@@ -36,6 +56,7 @@
 		]]>
 	</insert>
 	
+	
 	<!-- 방명록 삭제  -->
 	<delete id="delete">
 		<![CDATA[
@@ -43,7 +64,6 @@
 			where person_id = #{personId}
 		]]>
 	</delete>
-	
 	
 	
 	<!-- 방명록 수정 -->
