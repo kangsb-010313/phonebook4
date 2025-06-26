@@ -54,7 +54,7 @@ public class PhonebookController {
 		
 		phonebookService.exeGetPhonebookAdd(personVO);
 		
-		return "";
+		return "redirect:/list";
 	}
 	
 	//삭제
