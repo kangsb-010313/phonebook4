@@ -49,14 +49,12 @@ public class PhonebookController {
 	
 	//등록
 	@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST})
-	public String write(@ModelAttribute PersonVO personVO) {
+	public String add(@ModelAttribute PersonVO personVO) {
 		System.out.println("PhonebookController.add");
-		
-		System.out.println(personVO);
 		
 		phonebookService.exeGetPhonebookAdd(personVO);
 		
-		return "redirect:/list";
+		return "";
 	}
 	
 	//삭제

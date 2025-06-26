@@ -1,6 +1,8 @@
 package com.javaex.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +32,20 @@ public class PhonebookService {
 		
 		System.out.println("PhonebookService.exeGetPhonebookAdd()");
 	
-		int count = phonebookDAO.personInsert(personVO);
+		//int count = phonebookDAO.personInsert(personVO);
+		
+		/*
+		 가정 데이터가 여기서 생김. 여기서 묶어야 됨
+		 1.vo를 만들고 묶으면 된다
+		 2.map으로 묶는다(이번에만 쓴다) <-- 지금은 여기에 해당
+		*/
+		
+		Map<String, String> personMap = new HashMap<String, String>();
+		personMap.put("name", "강수빈");
+		personMap.put("hp", "010");
+		personMap.put("company", "02");
+		
+		int count = phonebookDAO.personInsert2(personMap);
 		
 		return count;
 		
