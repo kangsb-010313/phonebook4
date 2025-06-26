@@ -60,7 +60,7 @@
 	
 	
 	<!-- 방명록 저장  -->
-	<insert id="insert" parameterType="com.javaex.vo.PersonVO">
+	<insert id="insert" parameterType="map">
 		<![CDATA[
 			insert into person
 			values(null, #{name}, #{hp}, #{company})
