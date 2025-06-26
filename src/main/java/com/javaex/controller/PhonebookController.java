@@ -30,7 +30,7 @@ public class PhonebookController {
 	//리스트 가져오기
 	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String list(Model model) {
-		System.out.println("/phonebook4/list");
+		System.out.println("PhonebookController.list");
 		
 		List<PersonVO> phonebookList = phonebookService.exeGetPhonebookList();
 
@@ -42,7 +42,7 @@ public class PhonebookController {
 	//등록폼
 	@RequestMapping(value="/wform", method= {RequestMethod.GET, RequestMethod.POST})
 	public String wform() {
-		System.out.println("/phonebook4/wform");
+		System.out.println("PhonebookController.wform");
 		
 		return "writeform";
 	}
@@ -50,7 +50,7 @@ public class PhonebookController {
 	//등록
 	@RequestMapping(value="/write", method= {RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute PersonVO personVO) {
-		System.out.println("/phonebook4/write");
+		System.out.println("PhonebookController.write");
 		
 		System.out.println(personVO);
 		
@@ -62,7 +62,7 @@ public class PhonebookController {
 	//삭제
 	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})
 	public String delete(@RequestParam("no") int no) {
-		System.out.println("/phonebook4/delte");
+		System.out.println("PhonebookController.delte");
 		
 		phonebookService.exeGetPhonebookDelete(no);
 		
@@ -71,10 +71,10 @@ public class PhonebookController {
 
 	//수정폼
 	@RequestMapping(value="/mform", method= {RequestMethod.GET, RequestMethod.POST})
-	public String mform(@RequestParam("no") int no, Model model) {
-		System.out.println("/phonebook4/mform");
+	public String mform(@RequestParam(value = "no") int personId, Model model) {
+		System.out.println("PhonebookController.mform");
 	    
-	    PersonVO personVO = phonebookService.exeGetPhonebookMform(no);
+	    PersonVO personVO = phonebookService.exeGetPhonebookMform(personId);
 	    
 	    model.addAttribute("personVO", personVO);
 		
@@ -84,7 +84,7 @@ public class PhonebookController {
 	//수정
 	@RequestMapping(value="/modify", method= {RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute PersonVO personVO) {
-		System.out.println("/phonebook4/modify");
+		System.out.println("PhonebookController.modify");
 		
 		phonebookService.exeGetPhonebookUpdate(personVO);
 		

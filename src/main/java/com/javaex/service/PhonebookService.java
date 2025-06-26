@@ -46,11 +46,11 @@ public class PhonebookService {
 		
 	}
 	
-	//리스트 수정폼
-	public PersonVO exeGetPhonebookMform(int no) {
+	//1명 리스트 가져오기(리스트 수정폼)
+	public PersonVO exeGetPhonebookMform(int personId) {
 		System.out.println("PhonebookService.exeGetPhonebookMform()");
 		
-		PersonVO personVO = phonebookDAO.personSelectOne(no);
+		PersonVO personVO = phonebookDAO.personSelectOne(personId);
 	
 		return personVO;
 	}

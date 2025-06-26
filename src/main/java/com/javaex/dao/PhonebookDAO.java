@@ -16,9 +16,6 @@ public class PhonebookDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 생성자
-	public PhonebookDAO(){}
-
 	
 	// 전체리스트 가져오기
 	public List<PersonVO> personSelect() {
@@ -34,11 +31,11 @@ public class PhonebookDAO {
 	
 	
 	// 1명 정보 가져오기
-	public PersonVO personSelectOne(int no) {
+	public PersonVO personSelectOne(int personId) {
 		
 		System.out.println("PhonebookDAO.personSelectOne()");
 		
-		PersonVO personVO = sqlSession.selectOne("phonebook.selectone", no);
+		PersonVO personVO = sqlSession.selectOne("phonebook.selectOne", personId);
 		
 		return personVO;
 		
