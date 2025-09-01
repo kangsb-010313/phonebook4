@@ -24,7 +24,7 @@ public class PhonebookController {
 	
 	
 	//메소드 gs
-	
+	 
 	
 	//메소드 일반	
 	//리스트 가져오기
